@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 const TOKEN_KEY = "mali_token";
 
 const api = axios.create({
-  baseURL: "https://m-naturals.onrender.com//api",
+  baseURL: "http://localhost:8080/api",
 });
 
 // ✅ Request interceptor: attach token to all requests

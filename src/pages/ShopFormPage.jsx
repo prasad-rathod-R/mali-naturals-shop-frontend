@@ -116,7 +116,8 @@ const ShopFormPage = () => {
     setLoading(true);
     try {
       if (isEdit) {
-        await updateShop(id, shop);
+        await updateShop(id, shopData);
+
         toast.success("Shop updated");
       } else {
         await createShop(shop);
