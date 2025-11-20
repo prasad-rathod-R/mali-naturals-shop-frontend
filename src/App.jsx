@@ -1,5 +1,4 @@
-// src/App.jsx
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import DashboardPage from "./pages/DashboardPage";
@@ -12,26 +11,24 @@ const App = () => {
   return (
     <Routes>
       {/* Public routes */}
+      <Route path="/" element={<LoginPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
 
-      {/* Protected app layout */}
+      {/* Private routes – all wrapped by AppLayout + ProtectedRoute */}
       <Route
-        path="/"
         element={
           <ProtectedRoute>
             <AppLayout />
           </ProtectedRoute>
         }
       >
-        {/* Redirect root to dashboard */}
-        <Route index element={<Navigate to="/dashboard" replace />} />
-        <Route path="dashboard" element={<DashboardPage />} />
-        <Route path="shops/new" element={<ShopFormPage />} />
-        <Route path="shops/:id" element={<ShopFormPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/shops/new" element={<ShopFormPage />} />
+        <Route path="/shops/:id" element={<ShopFormPage />} />
       </Route>
 
-      {/* 404 */}
+      {/* Fallback */}
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
